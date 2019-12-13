@@ -180,13 +180,12 @@ Source: <a href="http://inspire.ec.europa.eu/id/ats/metadata/2.0/common" target=
 		let $pocs := $record/gmd:contact/gmd:CI_ResponsibleParty
 		let $iso19115_CIRoleCode := ('resourceProvider','custodian','owner','user','distributor','originator','pointOfContact','principalInvestigator','processor','publisher','author')
 		let $RoleCodes := $pocs/gmd:role/gmd:CI_RoleCode
-        (:Count how many point of contacts are defined:)
         let $pointOfContact := 
 		(for $y in $RoleCodes 
 			return 
 		 		if ($RoleCodes/@codeListValue = 'pointOfContact') then $y/@codeListValue
         		else ())
-        (:Count how many invalid values are:)
+
         let $invalidCodeListValues := 
 		(for $y in $RoleCodes 
 			return 
@@ -198,10 +197,10 @@ Source: <a href="http://inspire.ec.europa.eu/id/ats/metadata/2.0/common" target=
 				local:addMessage('TR.noMetadataContact', map { 'filename': local:filename($record), 'id': $rid })
             else if (count($pointOfContact) < 1) then
 				local:addMessage('TR.invalidMetadataContactRoleCodeListValue', map { 'filename': local:filename($record), 'id': $rid, 'poc': '0 pointOfContact'})
-			else if (not($invalidCodeListValues = 0)) then
-                for $codeListValue in $invalidCodeListValues
+			else if (not(count($invalidCodeListValues) = 0)) then
+                (for $codeListValue in $invalidCodeListValues
 				    return
-                        local:addMessage('TR.invalidMetadataContactRoleCodeListValue', map { 'filename': local:filename($record), 'id': $rid, 'poc': fn:string($codeListValue)})
+                        local:addMessage('TR.invalidMetadataContactRoleCodeListValue', map { 'filename': local:filename($record), 'id': $rid, 'poc': fn:string($codeListValue)}))
 			else
 				for $poc in $pocs
 					let $orgName := $poc/gmd:organisationName
