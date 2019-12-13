@@ -189,7 +189,7 @@ Source: <a href="http://inspire.ec.europa.eu/id/ats/metadata/2.0/common" target=
         let $invalidCodeListValues := 
 		(for $y in $RoleCodes 
 			return 
-		 		if($y/@codeListValue = $iso19115_CIRoleCode) then ()
+		 		if ($y/@codeListValue = $iso19115_CIRoleCode) then ()
         		else $y/@codeListValue)
         return
 			if (not($pocs)) then 
