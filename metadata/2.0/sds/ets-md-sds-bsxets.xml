@@ -227,12 +227,12 @@ let $messages :=
 				(for $keyword in $keywordElements
 					return
 					if ( $keyword/gco:CharacterString/text() = $validCategories or $keyword/gmx:Anchor/@xlink:href = $validCategories ) then
-						true()
+						$keyword
 					else()
 				)[position() le $limitErrors]
 
 			return
-			if ( not($valid = true())  ) then
+			if ($valid = 0) then
 				local:addMessage('TR.missingValidKeywordElement', map { 'filename': local:filename($record), 'id': $rid, 'count': string(count($keywordElements)) })
 			else()
 
