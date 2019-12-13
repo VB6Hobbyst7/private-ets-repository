@@ -183,14 +183,13 @@ Source: <a href="http://inspire.ec.europa.eu/id/ats/metadata/2.0/common" target=
         let $pointOfContact := 
 		(for $y in $RoleCodes 
 			return 
-		 		if ($RoleCodes/@codeListValue = 'pointOfContact') then $y/@codeListValue
+		 		if ($y/@codeListValue = 'pointOfContact') then $y/@codeListValue
         		else ())
 
         let $invalidCodeListValues := 
 		(for $y in $RoleCodes 
 			return 
-		 		if ($RoleCodes/@codeListValue = 'pointOfContact') then ()
-				else if($y/@codeListValue = $iso19115_CIRoleCode) then ()
+		 		if($y/@codeListValue = $iso19115_CIRoleCode) then ()
         		else $y/@codeListValue)
         return
 			if (not($pocs)) then 
