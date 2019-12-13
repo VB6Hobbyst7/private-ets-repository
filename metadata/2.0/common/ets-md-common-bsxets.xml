@@ -197,7 +197,7 @@ Source: <a href="http://inspire.ec.europa.eu/id/ats/metadata/2.0/common" target=
 				local:addMessage('TR.noMetadataContact', map { 'filename': local:filename($record), 'id': $rid })
             else if (count($pointOfContact) = 0) then
 				local:addMessage('TR.invalidMetadataContactRoleCodeListValue', map { 'filename': local:filename($record), 'id': $rid, 'poc': '0 pointOfContact'})
-			else if (count($invalidCodeListValues) = 0) then
+			else if (not(count($invalidCodeListValues) = 0)) then
                 (for $codeListValue in $invalidCodeListValues
 				    return
                         local:addMessage('TR.invalidMetadataContactRoleCodeListValue', map { 'filename': local:filename($record), 'id': $rid, 'poc': fn:string($codeListValue)}))
