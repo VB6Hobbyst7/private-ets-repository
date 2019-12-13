@@ -232,7 +232,7 @@ let $messages :=
 				)[position() le $limitErrors]
 
 			return
-			if ($valid = 0) then
+			if (count($valid) = 0) then
 				local:addMessage('TR.missingValidKeywordElement', map { 'filename': local:filename($record), 'id': $rid, 'count': string(count($keywordElements)) })
 			else()
 
