@@ -226,7 +226,7 @@ let $messages :=
 			let $valid :=
 				(for $keyword in $keywordElements
 					return
-					if ( $keyword/gco:CharacterString/text() = $validCategories or $keyword/gmx:Anchor/@xlink:href = $validCategories ) then
+					if ($keyword/gco:CharacterString/text() = $validCategories or $keyword/gmx:Anchor/@xlink:href = $validCategories ) then
 						$keyword
 					else()
 				)[position() le $limitErrors]
