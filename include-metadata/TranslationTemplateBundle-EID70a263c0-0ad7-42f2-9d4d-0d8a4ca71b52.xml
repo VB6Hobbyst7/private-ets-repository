@@ -1345,7 +1345,7 @@ described data set or data set series.
 	  <LangTranslationTemplateCollection name="TR.missingValidKeywordElement">
 		 <translationTemplates>
 			<TranslationTemplate language="en" name="TR.missingValidKeywordElement">
-			XML document '{filename}', record '{id}': At least one Spatial Data Service category or subcategory shall be given using the values defined in Part D 4 “Classification of Spatial Data Services” of [Regulation 1205/2008].
+			XML document '{filename}', record '{id}': At least one Spatial Data Service category or subcategory shall be given using the values defined in Part D 4 “Classification of Spatial Data Services” of [Regulation 1205/2008]. Found : '{count}'
 			</TranslationTemplate>
 		 </translationTemplates>
 	  </LangTranslationTemplateCollection>
