@@ -237,10 +237,6 @@ let $messages :=
 						if (not($keyword/gmx:Anchor/@xlink:href = $validCategoriesUrl)) then ()
 						else $keyword)
 
-			let $dummyValidCategories := 
-				(for $category in $validCategories
-					return 
-						local:log('Valid Category: '|| string($category)))
 			let $dummyInvalidAnchor := 
 				(for $category in $invalidAnchor
 					return 
