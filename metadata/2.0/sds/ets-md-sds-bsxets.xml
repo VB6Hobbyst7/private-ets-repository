@@ -227,6 +227,7 @@ let $messages :=
 				(for $keyword in $keywordElements
 					return
 						if (string-length($keyword/gco:CharacterString/text()) = 0) then $keyword/gco:CharacterString/text()
+						else if (not($keyword/gco:CharacterString/text())) then $keyword
 						else ())
 			let $totalAnchor :=
 				(for $keyword in $keywordElements
@@ -236,21 +237,11 @@ let $messages :=
 					return
 						if (not($keyword/gmx:Anchor/@xlink:href = $validCategoriesUrl)) then $keyword/gmx:Anchor/@xlink:href
 						else ())
-
-			let $dummyAnchor := 
-				(for $category in $totalAnchor
-					return 
-						local:log('Anchor: '|| string($category)))
-			let $dummyinvalidAnchor := 
-				(for $category in $invalidAnchor
-					return 
-						local:log('Anchor: '|| string($category)))
-
 			return
-				if (not(count($invalidCharacterStrings) = 0)) then
+				if (not(count($invalidCharacterStrings) = 0) or not($invalidCharacterStrings)) then
 					(for $CharacterString in $invalidCharacterStrings
 						return
-							local:addMessage('TR.missingValidKeywordElement', map { 'filename': local:filename($record), 'id': $rid, 'strings':string($CharacterString)}))
+							local:addMessage('TR.missingValidKeywordElement', map { 'filename': local:filename($record), 'id': $rid}))
 				else if (count($invalidAnchor) = count($totalAnchor)) then
 					(for $Anchor in $invalidAnchor
 						return 

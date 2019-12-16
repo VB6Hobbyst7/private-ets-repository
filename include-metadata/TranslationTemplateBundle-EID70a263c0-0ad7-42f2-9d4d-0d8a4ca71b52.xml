@@ -1345,7 +1345,7 @@ described data set or data set series.
 	  <LangTranslationTemplateCollection name="TR.missingValidKeywordElement">
 		 <translationTemplates>
 			<TranslationTemplate language="en" name="TR.missingValidKeywordElement">
-			XML document '{filename}', record '{id}': All keyword elements must be a Non-empty Free Text. Found: '{strings}'
+			XML document '{filename}', record '{id}': All keyword elements must be a Non-empty Free Text.
 			</TranslationTemplate>
 		 </translationTemplates>
 	  </LangTranslationTemplateCollection>
