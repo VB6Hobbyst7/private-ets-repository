@@ -951,6 +951,20 @@
 			</TranslationTemplate>
 		 </translationTemplates>
 	  </LangTranslationTemplateCollection>	  
+	  <LangTranslationTemplateCollection name="TR.CharacterStringNotFound">
+		 <translationTemplates>
+			<TranslationTemplate language="en" name="TR.CharacterStringNotFound">
+			XML document '{filename}', record '{id}': Keyword element must have to include a Non-empty Free Text.
+			</TranslationTemplate>
+		 </translationTemplates>
+	  </LangTranslationTemplateCollection>	  
+	  <LangTranslationTemplateCollection name="TR.AnchorNotFound">
+		 <translationTemplates>
+			<TranslationTemplate language="en" name="TR.AnchorNotFound">
+			XML document '{filename}', record '{id}': At least one keyword shall be given withe a child Anchor that includes an xlink:href attribute with one of the language-natural keyword values as defined in "Classification of Spatial Data Services" Part D 4.
+			</TranslationTemplate>
+		 </translationTemplates>
+	  </LangTranslationTemplateCollection>	  
 	  <LangTranslationTemplateCollection name="TR.missingOtherConstraints">
 		 <translationTemplates>
 			<TranslationTemplate language="en" name="TR.missingOtherConstraints">
