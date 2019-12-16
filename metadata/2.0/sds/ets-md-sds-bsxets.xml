@@ -234,16 +234,26 @@ let $messages :=
 				return 
 					local:log('Valid Category: '|| $category))
 			
+			let $dummy3 := 
+			(for $category in $invalidCharacterStrings
+				return 
+					local:log('Invalid CharacterString: '|| $category))
+
 			let $invalidAnchor :=
 				(for $keyword in $keywordElements/gmx:Anchor/@xlink:href
 					return
-					if (not($keyword = $validCategories)) then ()
+					if (not($keyword = $validCategoriesUrl)) then ()
 					else $keyword)
+
+			let $dummy2 := 
+			(for $category in $invalidAnchor
+				return 
+					local:log('Invalid Anchor: '|| $category))
 
 			let $totalAnchor :=
 				(for $keyword in $keywordElements/gmx:Anchor/@xlink:href
 					return $keyword)
-					
+
 			return
 				if (not($invalidCharacterStrings = 0)) then
 					(for $CharacterString in $invalidCharacterStrings
