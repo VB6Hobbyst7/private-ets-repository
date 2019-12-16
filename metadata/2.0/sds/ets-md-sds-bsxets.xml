@@ -226,7 +226,7 @@ let $messages :=
 			let $invalidCharacterStrings :=
 				(for $keyword in $keywordElements
 					return
-						if (not(string-length($keyword/gco:CharacterString/text() = 0))) then ()
+						if (not(string-length($keyword/gco:CharacterString/text()) = 0)) then ()
 						else $keyword/gco:CharacterString/text())
 			let $totalAnchor :=
 				(for $keyword in $keywordElements
@@ -240,18 +240,18 @@ let $messages :=
 			let $dummyValidCategories := 
 				(for $category in $validCategories
 					return 
-						local:log('Valid Category: '|| $category))
+						local:log('Valid Category: '|| string($category)))
 			let $dummyInvalidAnchor := 
 				(for $category in $invalidAnchor
 					return 
-						local:log('Invalid Anchor: '|| $category))
+						local:log('Invalid Anchor: '|| string($category)))
 			let $dummyInvalidCharacterString := 
 				(for $category in $invalidCharacterStrings
 					return 
-						local:log('Invalid CharacterString: '|| $category))
+						local:log('Invalid CharacterString: '|| string($category)))
 
 			return
-				if (not($invalidCharacterStrings = 0)) then
+				if (not(count($invalidCharacterStrings) = 0)) then
 					(for $CharacterString in $invalidCharacterStrings
 						return
 							local:addMessage('TR.missingValidKeywordElement', map { 'filename': local:filename($record), 'id': $rid, 'strings':string($CharacterString)}))
