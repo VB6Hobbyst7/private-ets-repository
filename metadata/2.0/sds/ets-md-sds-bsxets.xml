@@ -238,7 +238,9 @@ let $messages :=
 					return $keyword)
 			return
 			if (not($invalidCharacterStrings = 0)) then
-				local:addMessage('TR.missingValidKeywordElement', map { 'filename': local:filename($record), 'id': $rid})
+				(for $CharacterString in $invalidCharacterStrings
+					return
+						local:addMessage('TR.missingValidKeywordElement', map { 'filename': local:filename($record), 'id': $rid, 'strings':string($invalidChar)}))
 			else if ($invalidAnchor = $totalAnchor) then
 				(for $Anchor in $invalidAnchor
 					return 
