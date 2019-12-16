@@ -226,25 +226,21 @@ let $messages :=
 			let $invalidCharacterStrings :=
 				(for $keyword in $keywordElements
 					return
-						if (not(string-length($keyword/gco:CharacterString/text()) = 0)) then ()
-						else $keyword/gco:CharacterString/text())
+						if (string-length($keyword/gco:CharacterString/text()) = 0) then $keyword/gco:CharacterString/text()
+						else ())
 			let $totalAnchor :=
 				(for $keyword in $keywordElements
 					return $keyword/gmx:Anchor/@xlink:href)
 			let $invalidAnchor :=
 				(for $keyword in $keywordElements
 					return
-						if (not($keyword/gmx:Anchor/@xlink:href = $validCategoriesUrl)) then ()
-						else $keyword)
+						if ($keyword/gmx:Anchor/@xlink:href = $validCategoriesUrl) then $keyword/gmx:Anchor/@xlink:href
+						else ())
 
-			let $dummyInvalidAnchor := 
-				(for $category in $invalidAnchor
+			let $dummyAnchor := 
+				(for $category in $totalAnchor
 					return 
-						local:log('Invalid Anchor: '|| string($category)))
-			let $dummyInvalidCharacterString := 
-				(for $category in $invalidCharacterStrings
-					return 
-						local:log('Invalid CharacterString: '|| string($category)))
+						local:log('Anchor: '|| string($category)))
 
 			return
 				if (not(count($invalidCharacterStrings) = 0)) then
