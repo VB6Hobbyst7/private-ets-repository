@@ -224,35 +224,31 @@ let $messages :=
 			local:addMessage('TR.keywordElementNotFound', map { 'filename': local:filename($record), 'id': $rid, 'count': string(count($keywordElements)) })
 		else
 			let $invalidCharacterStrings :=
-				(for $keyword in $keywordElements/gco:CharacterString/text()
+				(for $keyword in $keywordElements
 					return
-					if (not(string-length($keyword = 0))) then ()
-					else $keyword)
-
-			let $dummy := 
-			(for $category in $validCategories
-				return 
-					local:log('Valid Category: '|| $category))
-			
-			let $dummy3 := 
-			(for $category in $invalidCharacterStrings
-				return 
-					local:log('Invalid CharacterString: '|| $category))
-
-			let $invalidAnchor :=
-				(for $keyword in $keywordElements/gmx:Anchor/@xlink:href
-					return
-					if (not($keyword = $validCategoriesUrl)) then ()
-					else $keyword)
-
-			let $dummy2 := 
-			(for $category in $invalidAnchor
-				return 
-					local:log('Invalid Anchor: '|| $category))
-
+						if (not(string-length($keyword/gco:CharacterString/text() = 0))) then ()
+						else $keyword/gco:CharacterString/text())
 			let $totalAnchor :=
-				(for $keyword in $keywordElements/gmx:Anchor/@xlink:href
-					return $keyword)
+				(for $keyword in $keywordElements
+					return $keyword/gmx:Anchor/@xlink:href)
+			let $invalidAnchor :=
+				(for $keyword in $keywordElements
+					return
+						if (not($keyword/gmx:Anchor/@xlink:href = $validCategoriesUrl)) then ()
+						else $keyword)
+
+			let $dummyValidCategories := 
+				(for $category in $validCategories
+					return 
+						local:log('Valid Category: '|| $category))
+			let $dummyInvalidAnchor := 
+				(for $category in $invalidAnchor
+					return 
+						local:log('Invalid Anchor: '|| $category))
+			let $dummyInvalidCharacterString := 
+				(for $category in $invalidCharacterStrings
+					return 
+						local:log('Invalid CharacterString: '|| $category))
 
 			return
 				if (not($invalidCharacterStrings = 0)) then
