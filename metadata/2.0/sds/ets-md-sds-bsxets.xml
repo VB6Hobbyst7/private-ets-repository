@@ -228,25 +228,32 @@ let $messages :=
 					return
 					if (not(string-length($keyword = 0))) then ()
 					else $keyword)
+
+			let $dummy := 
+			(for $category in $validCategories
+				return 
+					local:log('Valid Category: '|| $category))
+			
 			let $invalidAnchor :=
 				(for $keyword in $keywordElements/gmx:Anchor/@xlink:href
 					return
 					if (not($keyword = $validCategories)) then ()
 					else $keyword)
+
 			let $totalAnchor :=
 				(for $keyword in $keywordElements/gmx:Anchor/@xlink:href
 					return $keyword)
+					
 			return
-			if (not($invalidCharacterStrings = 0)) then
-				(for $CharacterString in $invalidCharacterStrings
-					return
-						local:addMessage('TR.missingValidKeywordElement', map { 'filename': local:filename($record), 'id': $rid, 'strings':string($CharacterString)}))
-			else if ($invalidAnchor = $totalAnchor) then
-				(for $Anchor in $invalidAnchor
-					return 
-						local:addMessage('TR.missingValidKeywordAnchor', map { 'filename': local:filename($record), 'id': $rid, 'anchor': string($Anchor)}))
-			else()
-
+				if (not($invalidCharacterStrings = 0)) then
+					(for $CharacterString in $invalidCharacterStrings
+						return
+							local:addMessage('TR.missingValidKeywordElement', map { 'filename': local:filename($record), 'id': $rid, 'strings':string($CharacterString)}))
+				else if ($invalidAnchor = $totalAnchor) then
+					(for $Anchor in $invalidAnchor
+						return 
+							local:addMessage('TR.missingValidKeywordAnchor', map { 'filename': local:filename($record), 'id': $rid, 'anchor': string($Anchor)}))
+				else()
 	)[position() le $limitErrors]
 return
 (if ($messages) then 'FAILED' else 'PASSED',
