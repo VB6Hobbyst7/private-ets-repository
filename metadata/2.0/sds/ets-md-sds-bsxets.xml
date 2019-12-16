@@ -230,7 +230,7 @@ let $messages :=
 			let $invalidCharacterStrings :=
 				(for $keyword in $keywordElements
 					return
-						if (string-length($keyword/gco:CharacterString/text()) = 0) then $keyword/gco:CharacterString/text()
+						if (string-length($keyword/gco:CharacterString/text()) = 0) then $keyword
 						else ())
 			let $totalAnchor :=
 				(for $keyword in $keywordElements
@@ -239,11 +239,6 @@ let $messages :=
 				(for $keyword in $keywordElements
 					return
 						if (not($keyword/gmx:Anchor/@xlink:href = $validCategoriesUrl)) then $keyword/gmx:Anchor/@xlink:href
-						else ())
-			let $dummy := 
-			(for $keyword in $keywordElements
-					return
-						if (string-length($keyword/gco:CharacterString/text()) = 0) then local:log('Invalid Character String' || $keyword/gco:CharacterString/text())
 						else ())
 			return
 				if (not(count($invalidCharacterStrings) = 0)) then
