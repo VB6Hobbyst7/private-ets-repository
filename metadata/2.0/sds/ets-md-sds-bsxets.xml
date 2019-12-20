@@ -228,7 +228,7 @@ let $messages :=
 			let $emptyKeywordsText :=
 				(for $keyword in $keywordElements
 					return
-						if (string-length($keyword/gco:CharacterString/text()) = 0 and string-length($keyword/gmx:Anchor/text()) = 0) then $keyword
+						if (not(string-length($keyword/gco:CharacterString/text()) != 0) or not(string-length($keyword/gmx:Anchor/text()) != 0)) then $keyword
 						else ())
 			let $totalAnchor :=
 				(for $keyword in $keywordElements
