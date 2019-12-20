@@ -222,7 +222,7 @@ let $messages :=
 		return
 		if (not($keywordElements)) then
 			local:addMessage('TR.keywordElementNotFound', map { 'filename': local:filename($record), 'id': $rid})
-		else if(not($keywordElements/gmx:Anchor/@xlink:href) and (not($keywordElements/gmx:Anchor/@xlink:href))) then
+		else if(not($keywordElements/gmx:Anchor/@xlink:href)) then
 			local:addMessage('TR.AnchorNotFound', map { 'filename': local:filename($record), 'id': $rid})
 		else
 			let $emptyKeywordsText :=
