@@ -446,7 +446,7 @@ let $messages :=
 		else if ($ci_date/gmd:date/gco:Date and not(matches($ci_date/gmd:date/gco:Date/text(),$regexDate))) then
 			local:addMessage('TR.invalidDateFormat', map { 'filename': local:filename($record), 'id': $rid }) 
 		else if ($ci_date/gmd:date/gco:DateTime and not(matches($ci_date/gmd:date/gco:DateTime/text(),$regexDateTime))) then
-			local:addMessage('TR.wrongDateFormat', map { 'filename': local:filename($record), 'id': $rid })
+			local:addMessage('TR.wrongDateFormat', map { 'filename': local:filename($record), 'id': $rid, 'path': $ci_date })
 		else if (not($dateType)) then
 			local:addMessage('TR.noDateType', map { 'filename': local:filename($record), 'id': $rid })
 		else if (not($dateType/@codeListValue = ('publication','revision','creation'))) then
