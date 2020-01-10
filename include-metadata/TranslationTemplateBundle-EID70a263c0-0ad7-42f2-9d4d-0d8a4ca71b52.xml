@@ -1448,7 +1448,7 @@ described data set or data set series.
 	  <LangTranslationTemplateCollection name="TR.wrongDateFormat">
 		 <translationTemplates>
 			<TranslationTemplate language="en" name="TR.wrongDateFormat">
-			XML document '{filename}', record '{id}': The date format shall be in conformity with ISO 8601 at '{path}'.
+			XML document '{filename}', record '{id}': The date format shall be in conformity with ISO 8601.
 			</TranslationTemplate>
 		 </translationTemplates>
 	  </LangTranslationTemplateCollection>
