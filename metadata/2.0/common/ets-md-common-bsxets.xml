@@ -561,7 +561,7 @@ let $messages :=
 			let $endPosition := $extent/*:TimePeriod/*:endPosition
 			return
 		if ($timePosition) then
-			if ((not($beginPosition/@indeterminatePosition) and not($beginPosition/@indeterminatePosition = 'now')) or not(matches($timePosition/text(), $regex))) then
+			if ((not($timePosition/@indeterminatePosition) and not($timePosition/@indeterminatePosition = 'now')) or not(matches($timePosition/text(), $regex))) then
 				local:addMessage('TR.wrongDateFormat', map { 'filename': local:filename($record), 'id': $rid })
 			else ()
 		else if($timePeriod) then
