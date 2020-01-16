@@ -311,7 +311,7 @@ return
 <!-- DONE -->
 let $urls := $records/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:operatesOn/@xlink:href
 let $map := local:check-resource-uris($urls, 30, true())
-	let $dummy := local:log('Map: ''' || $map ||  '''')
+let $dummy := local:log('Map: ')
 let $messages :=
 	(for $record in $records
 		let $rid := $record/gmd:fileIdentifier/*/text()

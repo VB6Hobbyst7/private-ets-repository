@@ -108,7 +108,7 @@ declare function local:check-resource-uri($uri as xs:string, $timeoutInS as xs:i
 			return
 			if ($response/@status=('200','204')) then
 			   let $contenttype := $response/http:header[lower-case(@name)='content-type']/@value
-   		   let $loginfo14 := local:log('Content type: ''' || $contenttype || '''')
+   		   let $loginfo14 := local:log('Content type: ''' || string($contenttype) || '''')
 
 		  		return
 		  		if ($contenttype) then $contenttype else 'application/octet-stream'
