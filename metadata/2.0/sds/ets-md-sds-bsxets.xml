@@ -325,6 +325,7 @@ let $messages :=
 				let $url := string($href)
 				let $dummy := local:log('URL: '''|| $url || '''')
 				let $validuri := map:get($map, $url)
+				let $dummy2 := local:log('Valid URI: '''|| $validuri || '''')
 				return
 				if ($validuri = 'notHTTP') then
 					local:addMessage('TR.urlNotHttp', map { 'filename': local:filename($record), 'id': $rid, 'url': $url })
