@@ -101,7 +101,10 @@ declare function local:check-resource-uri($uri as xs:string, $timeoutInS as xs:i
 		try { 
 		   let $loginfo := local:log('Checking URL: ''' || $uri || '''')
 		   let $query := "import module namespace http = 'http://expath.org/ns/http-client'; declare variable $timeoutInS external; declare variable $redirect external; declare variable $uri external; http:send-request(<http:request method='get' timeout='{$timeoutInS}' status-only='true' follow-redirect='{$redirect}'/>, $uri)"
+		   $loginfo := local:log('Query: ''' || $query || '''')
 			let $response := xquery:eval($query, map{ 'timeoutInS' : $timeoutInS, 'uri': $uri, 'redirect': $redirect }, map{ 'timeout': $timeoutInS })
+		   $loginfo := local:log('Response: ''' || $response || '''')
+		   $loginfo := local:log('Response status: ''' || $response/@status || '''')
 			return
 			if ($response/@status=('200','204')) then
 			   let $contenttype := $response/http:header[lower-case(@name)='content-type']/@value
