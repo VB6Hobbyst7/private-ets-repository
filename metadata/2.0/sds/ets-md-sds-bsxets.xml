@@ -323,9 +323,7 @@ let $messages :=
 			else
 			for $href in $urls
 				let $url := string($href)
-				let $dummy := local:log('URL: '''|| $url || '''')
 				let $validuri := map:get($map, $url)
-				let $dummy2 := local:log('Valid URI: '''|| $validuri || '''')
 				return
 				if ($validuri = 'notHTTP') then
 					local:addMessage('TR.urlNotHttp', map { 'filename': local:filename($record), 'id': $rid, 'url': $url })
@@ -338,6 +336,7 @@ let $messages :=
 				else if (starts-with($validuri,'text/xml') or starts-with($validuri,'application/xml')) then
 					try { 
 						let $root := fn:doc($url)/element()
+						let $dummy2 := local:log('Root: '''|| $root || '''')
 						let $validCodes := ('dataset','series')
 						return
 						if ( not($root[//gmd:hierarchyLevel[1]/gmd:MD_ScopeCode/@codeListValue = $validCodes]) ) then 
