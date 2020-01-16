@@ -336,7 +336,7 @@ let $messages :=
 				else if (starts-with($validuri,'text/xml') or starts-with($validuri,'application/xml')) then
 					try { 
 						let $root := fn:doc($url)/element()
-						let $dummy2 := local:log('Root: '''|| $root || '''')
+						let $dummy2 := local:log('Root: ')
 						let $validCodes := ('dataset','series')
 						return
 						if ( not($root[//gmd:hierarchyLevel[1]/gmd:MD_ScopeCode/@codeListValue = $validCodes]) ) then 
