@@ -324,7 +324,7 @@ let $messages :=
 			for $href in $urls
 				let $url := string($href)
 				let $dummy := local:log('URL: '''|| $url || '''')
-				let $validuri := map:get($map, $url)
+				let $validuri := map:get($map, 'https://inspire.ec.europa.eu/sites/default/files/md_2.0_datasets_example.xml')
 				let $dummy2 := local:log('Valid URI: '''|| $validuri || '''')
 				return
 				if ($validuri = 'notHTTP') then
