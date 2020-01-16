@@ -311,7 +311,6 @@ return
 <!-- DONE -->
 let $urls := $records/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:operatesOn/@xlink:href
 let $map := local:check-resource-uris($urls, 30, true())
-let $dummy := local:log('Map: ')
 let $messages :=
 	(for $record in $records
 		let $rid := $record/gmd:fileIdentifier/*/text()
@@ -324,6 +323,7 @@ let $messages :=
 			else
 			for $href in $urls
 				let $url := string($href)
+				let $dummy := local:log('URL: '''|| $url || '''')
 				let $validuri := map:get($map, $url)
 				return
 				if ($validuri = 'notHTTP') then
