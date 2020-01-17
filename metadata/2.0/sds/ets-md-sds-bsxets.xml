@@ -6,7 +6,7 @@ id="EID8f869e23-c9e9-4e86-8dca-be30ff421229" xsi:schemaLocation="http://www.inte
 	<localPath>/auto</localPath>
 	<label>Conformance Class 3: INSPIRE Spatial Data Service baseline metadata.</label>
 	<description><![CDATA[This test suite examines metadata records against the requirements for metadata in INSPIRE.<br/><br/>
-<b>This is a draft version. It has limitations and is expected to contain errors.</b> Please report any issues or problems <a href="https://github.com/inspire-eu-validation/community/wiki/Your-feedback" target="_blank">in GitHub</a>.<br/><br/>
+Please report any issues or problems <a href="https://github.com/inspire-eu-validation/community/wiki/Your-feedback" target="_blank">in GitHub</a>.<br/><br/>
 Known limitations are documented in the description of the applicable test case or test assertion.<br/><br/>
 There is a general limitation in all assertions that polymorphism and containment by reference (see the <a href="http://inspire.ec.europa.eu/id/ats/metadata/2.0/common/READMEd#ref_TG_MD" target="_blank">Technical Guidance</a>, sub-clauses A.3, A.4 and A.5) are not supported. However, the current Abstract Test Suite does not support polymorphism and references either (all XPath expressions do not support polymorhism or references; in addition, schema validation is only executed against the ISO/OGC schemas without extensions). It is therefore unclear if this is really a limitation or if the sections in the technical guidance are outdated.
 <br/><br/>
@@ -14,11 +14,11 @@ Source: <a href="http://inspire.ec.europa.eu/id/ats/metadata/2.0/sds" target="_b
 <br/><br/>
 Pre-requisite conformance classes: none]]></description>
 	<reference>../../../inspire-md-bsxets.xq</reference>
-		<version>0.1.0</version>
+		<version>1.0.1</version>
 	<author>Consortium Bilbomatica, Guadaltel y Geograma</author>
 	<creationDate>2018-06-30T00:00:00Z</creationDate>
 	<lastEditor>Consortium Bilbomatica, Guadaltel y Geograma</lastEditor>
-	<lastUpdateDate>2018-08-30T20:45:00Z</lastUpdateDate>
+	<lastUpdateDate>2020-01-16T16:00:00Z</lastUpdateDate>
 	<tags>
 		<tag ref="EIDc6567beb-fc33-4f2e-865d-0c3ee5b3d1ae"/>
 	</tags>
@@ -106,8 +106,6 @@ let $messages :=
 				local:addMessage('TR.wrongHierarchyLevelNameMultiplicity', map { 'filename': local:filename($record), 'id': $rid, 'count': string(count($levelname)) })
             else if (not(string-length($levelname/gco:CharacterString/text()) != 0 or string-length($levelname/gmx:Anchor/text()) != 0)) then
 				local:addMessage('TR.emptyHierarchyLevelName', map { 'filename': local:filename($record), 'id': $rid })
-			else if ($levelname/gco:CharacterString/text() != lower-case($levelname/gco:CharacterString/text()) or $levelname/gmx:Anchor/text() != lower-case($levelname/gmx:Anchor/text())) then
-				local:addMessage('TR.invalidHierarchyLevelName', map { 'filename': local:filename($record), 'id': $rid })
 			else()
 return
 (if ($messages) then 'FAILED' else 'PASSED',
@@ -344,7 +342,6 @@ let $messages :=
 								let $root := fn:doc(fn:replace($url,"https://","http://"))/element()
 							else ()
 						}
-
 						let $validCodes := ('dataset','series')
 						return
 						if ( not($root[//gmd:hierarchyLevel[1]/gmd:MD_ScopeCode/@codeListValue = $validCodes]) ) then 
@@ -467,8 +464,6 @@ let $messages :=
 			local:addMessage('TR.invalidCodeListValueSDS', map { 'filename': local:filename($record), 'id': $rid })
         else if (not($scopeDescription) or not(string-length($scopeDescription/gco:CharacterString/text()) != 0 or string-length($scopeDescription/gmx:Anchor/text()) != 0)) then
 			local:addMessage('TR.missingScopeDescription', map { 'filename': local:filename($record), 'id': $rid })
-		else if ($scopeDescription/gco:CharacterString/text() != lower-case($scopeDescription/gco:CharacterString/text()) or $scopeDescription/gmx:Anchor/text() != lower-case($scopeDescription/gmx:Anchor/text())) then
-			local:addMessage('TR.invalidScopeDescription', map { 'filename': local:filename($record), 'id': $rid })
 		else()
 	)[position() le $limitErrors]
 return
