@@ -335,6 +335,7 @@ let $messages :=
 					try { 
 						let $root := local:switch-url-request($url)
 						let $validCodes := ('dataset','series')
+						return
 						if (not($root[//gmd:hierarchyLevel[1]/gmd:MD_ScopeCode/@codeListValue = $validCodes]) ) then 
 							local:addMessage('TR.operatesOnWithoutDatasetOrSeriesRecord', map { 'filename': local:filename($record), 'id': $rid, 'url': $url, 'hierarchyLevel': data($root//gmd:hierarchyLevel[1]/gmd:MD_ScopeCode/@codeListValue) }) 
 						else ()
