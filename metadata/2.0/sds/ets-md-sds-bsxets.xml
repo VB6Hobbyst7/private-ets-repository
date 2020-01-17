@@ -332,14 +332,8 @@ let $messages :=
 				else if (matches($validuri,'^\d{3}$')) then
 					local:addMessage('TR.resourceNotAccessible', map { 'filename': local:filename($record), 'id': $rid, 'url': $url, 'status' : $validuri })
 				else if (starts-with($validuri,'text/xml') or starts-with($validuri,'application/xml')) then
-					let $root := ""
-						try{
-							$root := fn:doc($url)/element()
-						} catch * {
-							$root := local:switch-url-request($url)
-						}
-						
 					try { 
+						let $root := local:switch-url-request($url)
 						let $validCodes := ('dataset','series')
 						if (not($root[//gmd:hierarchyLevel[1]/gmd:MD_ScopeCode/@codeListValue = $validCodes]) ) then 
 							local:addMessage('TR.operatesOnWithoutDatasetOrSeriesRecord', map { 'filename': local:filename($record), 'id': $rid, 'url': $url, 'hierarchyLevel': data($root//gmd:hierarchyLevel[1]/gmd:MD_ScopeCode/@codeListValue) }) 
