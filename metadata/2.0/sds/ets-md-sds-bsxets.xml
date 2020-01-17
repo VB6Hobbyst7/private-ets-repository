@@ -307,7 +307,7 @@ return
 									<expectedResult>NOT_APPLICABLE</expectedResult>
 									<expression>
 <!-- DONE -->
-let $urls := $records/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:operatesOn/@xlink:href
+<!-- let $urls := $records/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:operatesOn/@xlink:href
 let $map := local:check-resource-uris($urls, 30, true())
 let $messages :=
 	(for $record in $records
@@ -356,7 +356,7 @@ let $messages :=
 return
 (if ($messages) then 'FAILED' else 'PASSED',
  	local:error-statistics('TR.recordsWithErrors', count(fn:distinct-values($messages//etf:argument[@token='id']/text()))),
- $messages)
+ $messages) -->
 							  </expression>
 									<testItemType ref="EIDf0edc596-49d2-48d6-a1a1-1ac581dcde0a"/>
 									<translationTemplates>
