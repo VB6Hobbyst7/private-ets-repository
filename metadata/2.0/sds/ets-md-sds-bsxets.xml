@@ -336,12 +336,7 @@ let $messages :=
 						try{
 							return fn:doc($url)/element()
 						} catch * {
-							return 
-							if (starts-with($url, 'http')) then
-								fn:doc(fn:replace($url,"http://","https://"))/element()
-							else if (starts-with($url, 'https')) then
-								fn:doc(fn:replace($url,"https://","http://"))/element()
-							else ()
+							return local:switch-url-request($url)
 						}
 						
 					try { 
