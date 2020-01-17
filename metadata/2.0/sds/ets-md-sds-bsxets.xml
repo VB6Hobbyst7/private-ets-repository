@@ -334,9 +334,9 @@ let $messages :=
 				else if (starts-with($validuri,'text/xml') or starts-with($validuri,'application/xml')) then
 					let $root := 
 						try{
-							fn:doc($url)/element()
+							return fn:doc($url)/element()
 						} catch * {
-							local:switch-url-request($url)
+							return local:switch-url-request($url)
 						}
 						
 					try { 
