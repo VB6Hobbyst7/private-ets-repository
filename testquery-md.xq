@@ -151,13 +151,13 @@ declare function local:check-resource-uris($uris as xs:string*, $timeoutInS as x
   ))
 };
 
-declare function local:switch-url-request($url as xs:string)
+declare function local:switch-url-request($url as xs:string) as xs:string
 {
   if (starts-with($url, 'http://')) then
-    return fn:doc(fn:replace($url,"http://","https://"))/element()
+    fn:doc(fn:replace($url,"http://","https://"))/element()
   else if (starts-with($url, 'https://')) then
-    return fn:doc(fn:replace($url,"https://","http://"))/element()
-  else return " "
+    fn:doc(fn:replace($url,"https://","http://"))/element()
+  else ()
 };
 
 (:
