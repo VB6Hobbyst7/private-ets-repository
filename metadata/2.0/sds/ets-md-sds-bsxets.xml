@@ -332,11 +332,11 @@ let $messages :=
 				else if (matches($validuri,'^\d{3}$')) then
 					local:addMessage('TR.resourceNotAccessible', map { 'filename': local:filename($record), 'id': $rid, 'url': $url, 'status' : $validuri })
 				else if (starts-with($validuri,'text/xml') or starts-with($validuri,'application/xml')) then
-					let $root := 
+					let $root := ""
 						try{
-							return fn:doc($url)/element()
+							$root := fn:doc($url)/element()
 						} catch * {
-							return local:switch-url-request($url)
+							$root := local:switch-url-request($url)
 						}
 						
 					try { 
