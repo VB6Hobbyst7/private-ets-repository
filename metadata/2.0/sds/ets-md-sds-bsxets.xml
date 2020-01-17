@@ -332,9 +332,9 @@ let $messages :=
 				else if (matches($validuri,'^\d{3}$')) then
 					local:addMessage('TR.resourceNotAccessible', map { 'filename': local:filename($record), 'id': $rid, 'url': $url, 'status' : $validuri })
 				else if (starts-with($validuri,'text/xml') or starts-with($validuri,'application/xml')) then	
-					try { 
+					<!-- try {  -->
 					let $root := fn:doc($url)/element()
-					
+
 						<!-- } catch * {
 							return 
 							if (starts-with($url, 'http')) then
@@ -349,9 +349,9 @@ let $messages :=
 						if ( not($root[//gmd:hierarchyLevel[1]/gmd:MD_ScopeCode/@codeListValue = $validCodes]) ) then 
 							local:addMessage('TR.operatesOnWithoutDatasetOrSeriesRecord', map { 'filename': local:filename($record), 'id': $rid, 'url': $url, 'hierarchyLevel': data($root//gmd:hierarchyLevel[1]/gmd:MD_ScopeCode/@codeListValue) }) 
 						else ()
-					} catch * { 
+					<!-- } catch * { 
 						local:addMessage('TR.resourceNotAccessibleException', map { 'filename': local:filename($record), 'id': $rid, 'url': $url, 'message': $err:description })
-					}
+					} -->
 				else
 					local:addMessage('TR.unknownResourceType', map { 'filename': local:filename($record), 'id': $rid, 'url': $url, 'mediaType': $validuri })
 	)[position() le $limitErrors]
