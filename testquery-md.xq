@@ -158,7 +158,7 @@ declare function local:switch-url-request($url as xs:string)
   else if (starts-with($url, 'https://')) then
     return fn:doc(fn:replace($url,"https://","http://"))/element()
   else return " "
-}
+};
 
 (:
 @throws: an error that explains why the code list could not be accessed
