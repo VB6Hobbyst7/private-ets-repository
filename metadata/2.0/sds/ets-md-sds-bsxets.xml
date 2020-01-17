@@ -334,14 +334,14 @@ let $messages :=
 				else if (starts-with($validuri,'text/xml') or starts-with($validuri,'application/xml')) then
 					let $root := 
 						try{
-							return fn:doc($url)/element()
+							fn:doc($url)/element()
 						} catch * {
-							return local:switch-url-request($url)
+							local:switch-url-request($url)
 						}
 						
 					try { 
 						let $validCodes := ('dataset','series')
-						if ( not($root[//gmd:hierarchyLevel[1]/gmd:MD_ScopeCode/@codeListValue = $validCodes]) ) then 
+						if (not($root[//gmd:hierarchyLevel[1]/gmd:MD_ScopeCode/@codeListValue = $validCodes]) ) then 
 							local:addMessage('TR.operatesOnWithoutDatasetOrSeriesRecord', map { 'filename': local:filename($record), 'id': $rid, 'url': $url, 'hierarchyLevel': data($root//gmd:hierarchyLevel[1]/gmd:MD_ScopeCode/@codeListValue) }) 
 						else ()
 					} catch * { 

@@ -157,7 +157,7 @@ declare function local:switch-url-request($url as xs:string)
     return fn:doc(fn:replace($url,"http://","https://"))/element()
   else if (starts-with($url, 'https://')) then
     return fn:doc(fn:replace($url,"https://","http://"))/element()
-  else ()
+  else return " "
 }
 
 (:
