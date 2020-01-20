@@ -2618,9 +2618,9 @@ SOAPUI_I.init(log,context,testRunner);
 
 ProjectHelper ph = new ProjectHelper();
 
-String autoConfigurationCompleted = ph.getTestCase("AutoConfigure WFS").getPropertyValue("AutoConfigurationCompleted")
-
-if(!"true".equals(autoConfigurationCompleted)) {
+String autoConfigurationCompleted = ph.getTestCase("AutoConfigure WFS").getPropertyValue("AutoConfigurationCompleted");
+String trueResult = "true";
+if (trueResult != autoConfigurationCompleted) {
 	throw new TranslatableAssertionError("TR.initializationAndBasicChecksFailed");
 }</script></con:config></con:testStep><con:properties><con:property><con:name>capabilities</con:name><con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><![CDATA[<wfs:WFS_Capabilities xsi:schemaLocation="http://www.opengis.net/wfs/2.0 http://aaaxs02/aaa-suite/schema/ogc/wfs/2.0/wfs.xsd http://inspire.ec.europa.eu/schemas/inspire_dls/1.0 http://aaaxs02/aaa-suite/schema/inspire/inspire_dls/1.0/inspire_dls.xsd" version="2.0.0" xmlns:ows="http://www.opengis.net/ows/1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wfs="http://www.opengis.net/wfs/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:inspire_dls="http://inspire.ec.europa.eu/schemas/inspire_dls/1.0">
    <ows:ServiceIdentification>
