@@ -4764,9 +4764,11 @@ Source: <a href="http://inspire.ec.europa.eu/id/ats/download-wfs/3.1/wfs-pre-def
           <con:request/>
           <con:assertion type="OwsExceptionReportAssertion" name="Expect no exception" id="377ecd8e-bc4f-4810-bbfc-1fc26abd8aea"/><con:assertion type="GroovyScriptAssertion" id="3123bfdf-4491-4a43-b136-15b5cb596c5b" name="xsi:schemaLocation contains the INSPIRE Download Services schema"><con:configuration><scriptText>import de.interactive_instruments.etf.suim.*
 Assert a = new Assert(messageExchange, context, log, Assert.INSPIRE_DS_NS);
-a.isTrue("//*[contains(@*:schemaLocation,'inspire_dls.xsd')]", "TR.missingDownloadServiceSchema");</scriptText></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="efa4fb4d-41e2-4da2-9719-2d97223a91c1" name="ExtendedCapabilities element exists"><con:configuration><scriptText>import de.interactive_instruments.etf.suim.*
+a.isTrue("//*[contains(@*:schemaLocation,'inspire_dls.xsd')]", "TR.missingDownloadServiceSchema");</scriptText></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="efa4fb4d-41e2-4da2-9719-2d97223a91c1" name="ExtendedCapabilities element exists"><con:configuration><scriptText>
+import de.interactive_instruments.etf.suim.*
 Assert a = new Assert(messageExchange, context, log, Assert.INSPIRE_DS_NS);
-a.exists("/wfs:WFS_Capabilities/ows:OperationsMetadata/ows:ExtendedCapabilities/inspire_dls:ExtendedCapabilities[1]", "TR.capabilities.extended.inspire.missingElement");</scriptText></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+a.exists("/wfs:WFS_Capabilities/ows:OperationsMetadata/ows:ExtendedCapabilities/inspire_dls:ExtendedCapabilities[0]", "TR.capabilities.extended.inspire.missingElement");
+</scriptText></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
           <con:parameters>
 
