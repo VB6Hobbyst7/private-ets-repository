@@ -4767,7 +4767,7 @@ Assert a = new Assert(messageExchange, context, log, Assert.INSPIRE_DS_NS);
 a.isTrue("//*[contains(@*:schemaLocation,'inspire_dls.xsd')]", "TR.missingDownloadServiceSchema");</scriptText></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="efa4fb4d-41e2-4da2-9719-2d97223a91c1" name="ExtendedCapabilities element exists"><con:configuration><scriptText>
 import de.interactive_instruments.etf.suim.*
 Assert a = new Assert(messageExchange, context, log, Assert.INSPIRE_DS_NS);
-a.exists("/wfs:WFS_Capabilities/ows:OperationsMetadata/ows:ExtendedCapabilities/inspire_dls:ExtendedCapabilities[0]", "TR.capabilities.extended.inspire.missingElement");
+a.exists("wfs:WFS_Capabilities/ows:OperationsMetadata/ows:ExtendedCapabilities/inspire_dls:ExtendedCapabilities", "TR.capabilities.extended.inspire.missingElement");
 </scriptText></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
           <con:parameters>
