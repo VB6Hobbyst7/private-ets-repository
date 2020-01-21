@@ -2526,7 +2526,7 @@ try {
 	ph.getTestCase().setPropertyValue("AutoConfigurationCompleted",e.getMessage());
 	autoConfiguration = e.getMessage()
 	if(e instanceof TranslatableAssertionError) {
-		throw new Exception(this, e.getMessage);;
+		throw new Exception(this, e.getMessage);
 	}
 }
 
