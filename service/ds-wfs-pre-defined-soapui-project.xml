@@ -2517,11 +2517,17 @@ String autoConfiguration = "failed"
 try {
 
 	cap.setCapabilities(ph.getTestStepResult('GetCapabilities'));
+	log.info("line1");
 	new ObjectSaver().save(cap);
+   log.info("line12");
 	autoConfiguration = "completed"
+   log.info("line123");
 	ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "true");
+	log.info("line1234");
 
 }catch(Exception e) {
+	log.info("Error");
+
 	log.error(e);
 	ph.getTestCase().setPropertyValue("AutoConfigurationCompleted",e.getMessage());
 	autoConfiguration = e.getMessage()
