@@ -2515,7 +2515,7 @@ ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "false");
 
 String autoConfiguration = "failed"
 try {
-
+	log.info("line");
 	cap.setCapabilities(ph.getTestStepResult('GetCapabilities'));
 	log.info("line1");
 	new ObjectSaver().save(cap);
