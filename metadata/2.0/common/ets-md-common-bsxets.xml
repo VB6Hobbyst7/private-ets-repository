@@ -722,7 +722,6 @@ let $messages :=
 	 return
 	 if (count($md_legalConstraints_Limitations) = 0) then
 		local:addMessage('TR.noResourceLimitations', map { 'filename': local:filename($record), 'id': $rid })
-	 else if (count($md_legalConstraints_Limitations) = 1) then ()
 	 else if (count($md_legalConstraints_Limitations) != 1) then
 		local:addMessage('TR.noValidResourceLimitations', map { 'filename': local:filename($record), 'id': $rid })
 	 else ()
@@ -794,7 +793,6 @@ let $messages :=
 	return 
 	 if (count($md_legalConstraints_Conditions) = 0) then
 		local:addMessage('TR.noResourceConditions', map { 'filename': local:filename($record), 'id': $rid })
-	 else if (count($md_legalConstraints_Conditions) = 1) then ()
 	 else if (count($md_legalConstraints_Conditions) != 1) then
 		local:addMessage('TR.noValidResourceConditions', map { 'filename': local:filename($record), 'id': $rid })
 	 else ()
