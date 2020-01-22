@@ -1617,7 +1617,7 @@ In other cases, gmd:otherConstraints shall include a non-empty free text element
 		 </translationTemplates>
 	  </LangTranslationTemplateCollection>
 	  
-	    <LangTranslationTemplateCollection name="TR.nodResourceConditions">
+	    <LangTranslationTemplateCollection name="TR.noResourceConditions">
 		 <translationTemplates>
 		    <TranslationTemplate language="en" name="TR.noResourceConditions">
 			XML document '{filename}', record '{id}': No resource constraint conditions is provided for this record.
