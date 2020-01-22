@@ -747,7 +747,7 @@ let $messages :=
 	(for $record in $records
 	let $rid := $record/gmd:fileIdentifier/*/text()
 	let $md_legalConstraints_Conditions :=
-		for $x in $record/gmd:identificationInfo/*/gmd:resourceConstraints/gmd:MD_LegalConstraints
+		for $x in $record/gmd:identificationInfo/*/gmd:resourceConstraints/gmd:MD_LegalConstraints where (count($x/gmd:accessConstraints) != 0 or count($x/gmd:useConstraints) != 0)
 		let $validAccessConstraints :=
 			for $ac in $x/gmd:accessConstraints
 			where ($ac/gmd:MD_RestrictionCode/@codeListValue = 'otherRestrictions')
@@ -785,8 +785,8 @@ let $messages :=
 				$y/@xlink:href = 'https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations')
 			return $y
 		return
-			if(count($validAccessConstraints) >= 2  and (count($validAnchor) = 1 or (not(count($x/gmd:otherConstraints/gco:CharacterString) = 0) and not(string-length($x/gmd:otherConstraints/gco:CharacterString) = 0)) and count($invalidAnchor) >= 1 )) then $x
-			else if(count($validUseConstraints) = 1 and (count($validAnchor) = 1 or (not(count($x/gmd:otherConstraints/gco:CharacterString) = 0) and not(string-length($x/gmd:otherConstraints/gco:CharacterString) = 0)) )) then $x
+			if(count($validAccessConstraints) = 2  and (count($validAnchor) >= 1 or (not(count($x/gmd:otherConstraints/gco:CharacterString) = 0) and not(string-length($x/gmd:otherConstraints/gco:CharacterString) = 0)) and count($invalidAnchor) >= 1 )) then $x
+			else if(count($validUseConstraints) = 1 and (count($validAnchor) >= 1 or (not(count($x/gmd:otherConstraints/gco:CharacterString) = 0) and not(string-length($x/gmd:otherConstraints/gco:CharacterString) = 0)) )) then $x
  			else ()
 	return 
 	 if (count($md_legalConstraints_Conditions) != 1) then
