@@ -720,7 +720,10 @@ let $messages :=
 			if(count($validAnchor) >= 1 and count($validAccessConstraints) = 1) then $x
 			else ()
 	 return
-	 if (count($md_legalConstraints_Limitations) != 1) then
+	 if (count($md_legalConstraints_Limitations) = 0) then
+		local:addMessage('TR.noResourceLimitations', map { 'filename': local:filename($record), 'id': $rid })
+	 else if (count($md_legalConstraints_Limitations) = 1) then ()
+	 else if (count($md_legalConstraints_Limitations) != 1) then
 		local:addMessage('TR.noValidResourceLimitations', map { 'filename': local:filename($record), 'id': $rid })
 	 else ()
 	)[position() le $limitErrors]
@@ -789,7 +792,10 @@ let $messages :=
 			else if(count($validUseConstraints) = 1 and (count($validAnchor) >= 1 or (not(count($x/gmd:otherConstraints/gco:CharacterString) = 0) and not(string-length($x/gmd:otherConstraints/gco:CharacterString) = 0)) )) then $x
  			else ()
 	return 
-	 if (count($md_legalConstraints_Conditions) != 1) then
+	 if (count($md_legalConstraints_Conditions) = 0) then
+		local:addMessage('TR.noResourceConditions', map { 'filename': local:filename($record), 'id': $rid })
+	 else if (count($md_legalConstraints_Conditions) = 1) then ()
+	 else if (count($md_legalConstraints_Conditions) != 1) then
 		local:addMessage('TR.noValidResourceConditions', map { 'filename': local:filename($record), 'id': $rid })
 	 else ()
 	)[position() le $limitErrors]

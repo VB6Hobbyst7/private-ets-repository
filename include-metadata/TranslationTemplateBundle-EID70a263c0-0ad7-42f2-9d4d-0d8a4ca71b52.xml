@@ -1593,6 +1593,16 @@ If no limitations apply, the gmd:otherConstraints shall include a gmx:Anchor ele
 			</TranslationTemplate>
 		 </translationTemplates>
 	  </LangTranslationTemplateCollection>
+	  
+	  </LangTranslationTemplateCollection>
+	  <LangTranslationTemplateCollection name="TR.noResourceLimitations">
+		 <translationTemplates>
+		    <TranslationTemplate language="en" name="TR.noResourceLimitations">
+			XML document '{filename}', record '{id}': No resource constraint limitations is provided for this record.
+			</TranslationTemplate>
+		 </translationTemplates>
+	  </LangTranslationTemplateCollection>
+
 	  <LangTranslationTemplateCollection name="TR.noValidResourceConditions">
 		 <translationTemplates>
 		    <TranslationTemplate language="en" name="TR.noValidResourceConditions">
@@ -1603,6 +1613,14 @@ Additionally, at least one instance of gmd:otherConstraints shall be given descr
 If no conditions apply, gmd:otherConstraints shall include a gmx:Anchor element pointing to the value "noConditionsApply" of the INSPIRE code list ConditionsApplyingToAccessAndUse. (http://inspire.ec.europa.eu/metadata-codelist/ConditionsApplyingToAccessAndUse/noConditionsApply)
 If the conditions are unknown,gmd:otherConstraints shall include a gmx:Anchor element pointing to the value "conditionsUnknown" of the INSPIRE code list ConditionsApplyingToAccessAndUse (http://inspire.ec.europa.eu/metadata-codelist/ConditionsApplyingToAccessAndUse/conditionsUnknown).
 In other cases, gmd:otherConstraints shall include a non-empty free text element with a textual description of the conditions in the language of the metadata.
+			</TranslationTemplate>
+		 </translationTemplates>
+	  </LangTranslationTemplateCollection>
+	  
+	    <LangTranslationTemplateCollection name="TR.nodResourceConditions">
+		 <translationTemplates>
+		    <TranslationTemplate language="en" name="TR.noResourceConditions">
+			XML document '{filename}', record '{id}': No resource constraint conditions is provided for this record.
 			</TranslationTemplate>
 		 </translationTemplates>
 	  </LangTranslationTemplateCollection>
