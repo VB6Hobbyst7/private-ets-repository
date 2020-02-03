@@ -2522,7 +2522,7 @@ try {
 	ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "true");
 
 }catch(Exception e) {
-	log.error(e);
+	log.error("*** "+ e + " ***");
 	ph.getTestCase().setPropertyValue("AutoConfigurationCompleted",e.getMessage());
 	autoConfiguration = e.getMessage()
 	if(e instanceof TranslatableAssertionError) {
