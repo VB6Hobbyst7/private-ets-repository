@@ -2508,16 +2508,18 @@ import de.interactive_instruments.xtf.wfs.*;
 import de.interactive_instruments.etf.suim.TranslatableAssertionError;
 SOAPUI_I.init(log,context,testRunner);
 
-def ph = new ProjectHelper();
-def cap = new Capabilities();
-
-ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "false");
 
 def autoConfiguration = false;
 try {
 
+   def ph = new ProjectHelper();
+   def cap = new Capabilities();
+   
+   ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "false");
+
 	cap.setCapabilities(ph.getTestStepResult('GetCapabilities'));
-	this.autoConfiguration = true;
+	new ObjectSaver().save(cap);
+   autoConfiguration = true;
 	ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "true");
 
 }catch(Exception e) {
