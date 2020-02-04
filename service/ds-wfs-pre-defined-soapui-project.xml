@@ -2517,7 +2517,6 @@ def autoConfiguration = false;
 try {
 
 	cap.setCapabilities(ph.getTestStepResult('GetCapabilities'));
-	new ObjectSaver().save(cap);
 	this.autoConfiguration = true;
 	ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "true");
 
