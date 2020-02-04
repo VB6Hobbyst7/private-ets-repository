@@ -2514,13 +2514,15 @@ try {
 
    def ph = new ProjectHelper();
    def cap = new Capabilities();
-   
+
    ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "false");
 
-	cap.setCapabilities(ph.getTestStepResult('GetCapabilities'));
-	new ObjectSaver().save(cap);
+   def testXML = ph.getTestStepResult('GetCapabilities');
+
    autoConfiguration = true;
-	ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "true");
+	<!-- cap.setCapabilities(testXML);
+	new ObjectSaver().save(cap);
+	ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "true"); -->
 
 }catch(Exception e) {
 
