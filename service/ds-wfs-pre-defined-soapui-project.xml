@@ -2518,7 +2518,7 @@ try {
 
 	cap.setCapabilities(ph.getTestStepResult('GetCapabilities'));
 	new ObjectSaver().save(cap);
-	autoConfiguration = true;
+	this.autoConfiguration = true;
 	ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "true");
 
 }catch(Exception e) {
@@ -2527,7 +2527,7 @@ try {
    log.error("Get Message " + e.getMessage());
    log.error("To String " + e.toString());
    log.error("Get Stack Trace " + e.getStackTrace());
-	ph.getTestCase().setPropertyValue("AutoConfigurationCompleted",e.getMessage());
+	ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "false");
 	if(e instanceof TranslatableAssertionError) {
 		throw e;
 	}
