@@ -2519,10 +2519,11 @@ try {
    def testXML = ph.getTestStepResult('GetCapabilities');
 
    cap.setCapabilities(testXML);
-   autoConfiguration = true;
-	<!-- 
 	new ObjectSaver().save(cap);
-	ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "true"); -->
+   autoConfiguration = true;
+	ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "true");
+	<!-- 
+    -->
 
 }catch(Exception e) {
 
