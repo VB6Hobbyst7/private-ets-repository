@@ -608,7 +608,8 @@ Source: <a href="http://inspire.ec.europa.eu/id/ats/data-tn/master/tn-as/network
 									<expectedResult>NOT_APPLICABLE</expectedResult>
 									<expression>
 let $dummy := local:log('Connectivity tolerance:  ' || string($connectivity_tolerance))
-'PASSED'
+if (1=1) then 'PASSED'
+else 'FAILED'
 									
 									</expression>
 									<testItemType ref="EIDb48eeaa3-6a74-414a-879c-1dc708017e11"/>
