@@ -177,7 +177,7 @@ else ()}
 let $writeQuery := file:write($queryFile, $query, map { "method": "text", "media-type": "text/plain" })
 
 return try {
-  xquery:eval($query, map {'features': $features, 'idMap': map:merge($features ! map:entry(fn:string(@gml:id), .)), 'validationErrors': $validationErrors, 'db': $db, 'files_to_test': $files_to_test, 'tests_to_execute': $tests_to_execute, 'limitErrors': $limitErrors, 'testObjectId': $testObjectId, 'logFile': $logFile, 'statFile': $statFile })
+  xquery:eval($query, map {'features': $features, 'idMap': map:merge($features ! map:entry(fn:string(@gml:id), .)), 'validationErrors': $validationErrors, 'db': $db, 'files_to_test': $files_to_test, 'connectivity_tolerance': $connectivity_tolerance,'tests_to_execute': $tests_to_execute, 'limitErrors': $limitErrors, 'testObjectId': $testObjectId, 'logFile': $logFile, 'statFile': $statFile })
 } catch * {
 let $text := '[' || $err:code || '] ' || $err:description || ' 
 ' || $err:module || ' (' || $err:line-number || '/' || $err:column-number || ')'
@@ -277,6 +277,7 @@ else ()}
 
 (: Parameters as strings :)
 declare variable $files_to_test external := ".*";
+declare variable $connectivity_tolerance external := "1";
 declare variable $tests_to_execute external := ".*";
 declare variable $schema_file external;
 
@@ -323,6 +324,13 @@ return ()
 } catch * {
 error($paramerror,concat("Parameter $files_to_test must be a valid regular expression. You have set the value to '",data($files_to_test),"', which results in the following error during execution:&#xa; '",data($err:description),"'&#xa;"))
 },
+
+try { let $x := matches('module.case.assertion',$connectivity_tolerance) 
+return ()
+} catch * {
+error($paramerror,concat("Parameter $connectivity_tolerance must be a valid regular expression. You have set the value to '",data($connectivity_tolerance),"', which results in the following error during execution:&#xa; '",data($err:description),"'&#xa;"))
+},
+
 
 try { let $x := matches('module.case.assertion',$tests_to_execute) 
 return ()
