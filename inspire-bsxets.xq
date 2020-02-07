@@ -25,7 +25,7 @@ for $case in $module//*[local-name()='TestCase']
       let $assertion-results := 
         for $assertion in $step//*[local-name()='TestAssertion']
           let $type := $assertion/etf:testItemType
-          let $disabled := if (not(matches($assertion/etf:label,$tests_to_execute)) or $type/@ref='EID92f22a19-2ec2-43f0-8971-c2da3eaafcd2' (:disabled :)) then 'NOT_APPLICABLE' else if ($type/@ref='EIDb48eeaa3-6a74-414a-879c-1dc708017e11' (: manual :)) then 'PASSED_MANUAL' else ()
+          let $disabled := if (not(matches($assertion/etf:label,$tests_to_execute)) or $type/@ref='EID92f22a19-2ec2-43f0-8971-c2da3eaafcd2' (:disabled :)) then 'NOT_APPLICABLE' (: else if ($type/@ref='EIDb48eeaa3-6a74-414a-879c-1dc708017e11' (: manual :)) then 'PASSED_MANUAL':) else ()
           return
 if ($disabled) then "
   let $startmessage := prof:void(local:start('" || $assertion/@id || "')) 
