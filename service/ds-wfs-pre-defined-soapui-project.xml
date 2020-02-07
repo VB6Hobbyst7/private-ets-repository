@@ -2510,34 +2510,29 @@ SOAPUI_I.init(log,context,testRunner);
 
 def ph = new ProjectHelper();
 def cap = new Capabilities();
-def autoConfiguration = false;
 
 ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "false");
 
+String autoConfiguration = "failed"
 try {
-
-   def testXML = ph.getTestStepResult('GetCapabilities');
-
-   cap.setCapabilities(testXML);
-	new ObjectSaver().save(cap);
-   autoConfiguration = true;
-	ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "true");
-	<!-- 
-    -->
+   def tc = testRunner.testCase.testSuite.project.testSuites['Initialization and basic checks'].testCases['AutoConfigure WFS'];
+   if (tc.getTestStepByName('GetCapabilities').getPropertyValue('Response') == null){
+      cap.setCapabilities(ph.getTestStepResult('GetCapabilities'));
+      new ObjectSaver().save(cap);
+      autoConfiguration = "completed"
+      ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "true");
+   }
 
 }catch(Exception e) {
-
-   log.error("Error at Analyze WFS Capabilities: ");
-   log.error("Get Message " + e.getMessage());
-   log.error("To String " + e.toString());
-   log.error("Get Stack Trace " + e.getStackTrace());
-	ph.getTestCase().setPropertyValue("AutoConfigurationCompleted", "false");
+	log.error(e);
+	ph.getTestCase().setPropertyValue("AutoConfigurationCompleted",e.getMessage());
+	autoConfiguration = e.getMessage()
 	if(e instanceof TranslatableAssertionError) {
 		throw e;
 	}
 }
 
-assert autoConfiguration == true, "Failed to initialize Executable Test Suite";
+assert "completed" == autoConfiguration, "Failed to initialize Executable Test Suite
 </script></con:config>
       </con:testStep><con:testStep type="httprequest" name="Get Schema Definition" id="2911de8f-d001-415f-88d4-8d9da1be57fd"><con:settings/><con:config method="GET" xsi:type="con:HttpRequest" name="Get Schema Definition" id="0c05e8a6-f0ca-4457-bd10-2db68e643ad1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:description>Get the schema definition for one FeatureType. This test step will most likely fail, if the Output Format is listed in the Capabilities but not supported by the implementing service. If the service is capable to serve the requested Output Format  but rejects the request, there might be an issue with the encoding of whitespaces ( %20 ) from the request. For technical reasons the schema must be publicly accesible without authentication and the test step will fail if this is not the case! Called by 'Analyze WFS Capabilities'.</con:description><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#endpt.DescribeFeatureType.Get}</con:endpoint><con:request/><con:assertion type="GroovyScriptAssertion" id="23a3c57b-db96-4570-a061-dec3596ebf12" name="SchemaLocations are publicly accessible without authentication"><con:configuration><scriptText>import com.eviware.soapui.support.XmlHolder
 import de.interactive_instruments.*
