@@ -613,6 +613,11 @@ else 'FAILED'
 									
 									</expression>
 									<testItemType ref="EIDb48eeaa3-6a74-414a-879c-1dc708017e11"/>
+									<translationTemplates>
+										<translationTemplate ref="TR.exactlyOneServiceType"/>
+										<translationTemplate ref="TR.noTypeFromSpatialDataServiceType"/>
+										<translationTemplate ref="TR.recordsWithErrors"/>
+									</translationTemplates>
 								</TestAssertion>
 							</testAssertions>
 						</TestStep>
