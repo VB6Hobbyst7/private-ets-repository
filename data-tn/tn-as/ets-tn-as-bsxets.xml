@@ -36,7 +36,9 @@ Pre-requisite conformance classes:
 			<type>string</type>
 		</parameter>
 		<parameter name="connectivity_tolerance" required="true">
+			<defaultValue>.*</defaultValue>
 			<description ref="TR.connectivityTolerance"/>
+			<allowedValues>.*</allowedValues>
 			<type>double</type>
 		</parameter>
 	</ParameterList>
