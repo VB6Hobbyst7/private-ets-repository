@@ -36,9 +36,8 @@ Pre-requisite conformance classes:
 			<type>string</type>
 		</parameter>
 		<parameter name="connectivity_tolerance" required="true">
-			<defaultValue>.*</defaultValue>
+			<defaultValue>1</defaultValue>
 			<description ref="TR.connectivityTolerance"/>
-			<allowedValues>.*</allowedValues>
 			<type>double</type>
 		</parameter>
 	</ParameterList>
@@ -607,7 +606,11 @@ Relevant requirements:
 Source: <a href="http://inspire.ec.europa.eu/id/ats/data-tn/master/tn-as/network-connectivity" target="_blank">Abstract Test Case 'Network connectivity'</a>, <a href="http://inspire.ec.europa.eu/documents/Data_Specifications/INSPIRE_DataSpecification_TN_v3.2.pdf">INSPIRE Data Specification on Transport Networks, A.1.10</a>]]></description>
 									<parent ref="EID39e3afa5-cccc-4856-8329-4e9d57ee41b2"/>
 									<expectedResult>NOT_APPLICABLE</expectedResult>
-									<expression>NOT_APPLICABLE</expression>
+									<expression>
+let $dummy := local:log('Connectivity tolerance:  ' || string($connectivity_tolerance))
+
+									
+									</expression>
 									<testItemType ref="EIDb48eeaa3-6a74-414a-879c-1dc708017e11"/>
 								</TestAssertion>
 							</testAssertions>
