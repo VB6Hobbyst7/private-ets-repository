@@ -608,9 +608,13 @@ Source: <a href="http://inspire.ec.europa.eu/id/ats/data-tn/master/tn-as/network
 									<expectedResult>NOT_APPLICABLE</expectedResult>
 									<expression>
 let $dummy := local:log('Connectivity tolerance:  ' || string($connectivity_tolerance))
-if (1=1) then 'PASSED'
-else 'FAILED'
-									
+return
+if (1=0) then 'FAILED' else 'PASSED',
+	local:error-statistics('TR.featuresWithErrors', count($featuresWithErrors)),
+	for $feature in $featuresWithErrors
+		order by $feature/@gml:id
+		return
+			local:addMessage('TR.freeNode', map { 'filename': local:filename($feature), 'featureType': local-name($feature), 'gmlid': string($feature/@gml:id) })
 									</expression>
 									<testItemType ref="EIDb48eeaa3-6a74-414a-879c-1dc708017e11"/>
 									<translationTemplates>
