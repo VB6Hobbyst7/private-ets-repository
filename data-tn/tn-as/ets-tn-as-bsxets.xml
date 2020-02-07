@@ -609,7 +609,7 @@ Source: <a href="http://inspire.ec.europa.eu/id/ats/data-tn/master/tn-as/network
 									<expression>
 let $dummy := local:log('Connectivity tolerance:  ' || string($connectivity_tolerance))
 return
-if (1=0) then 'FAILED' else 'PASSED',
+if (1=1) then 'FAILED' else 'PASSED',
 	local:error-statistics('TR.featuresWithErrors', count($featuresWithErrors)),
 	for $feature in $featuresWithErrors
 		order by $feature/@gml:id
